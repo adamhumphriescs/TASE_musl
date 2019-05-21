@@ -20,7 +20,7 @@
  *
  * SYNOPSIS:
  *
- * long double x, y, tgammal();
+ * TASELDOUBLE x, y, tgammal();
  *
  * y = tgammal( x );
  *
@@ -51,7 +51,7 @@
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double tgammal(long double x)
+TASELDOUBLE tgammal(TASELDOUBLE x)
 {
 	return tgamma(x);
 }
@@ -64,7 +64,7 @@ n=7, d=8
 Peak error =  1.83e-20
 Relative error spread =  8.4e-23
 */
-static const long double P[8] = {
+static const TASELDOUBLE P[8] = {
  4.212760487471622013093E-5L,
  4.542931960608009155600E-4L,
  4.092666828394035500949E-3L,
@@ -74,7 +74,7 @@ static const long double P[8] = {
  8.378004301573126728826E-1L,
  1.000000000000000000009E0L,
 };
-static const long double Q[9] = {
+static const TASELDOUBLE Q[9] = {
 -1.397148517476170440917E-5L,
  2.346584059160635244282E-4L,
 -1.237799246653152231188E-3L,
@@ -87,7 +87,7 @@ static const long double Q[9] = {
 };
 
 /*
-static const long double P[] = {
+static const TASELDOUBLE P[] = {
 -3.01525602666895735709e0L,
 -3.25157411956062339893e1L,
 -2.92929976820724030353e2L,
@@ -97,7 +97,7 @@ static const long double P[] = {
 -5.99650230220855581642e4L,
 -7.15743521530849602425e4L
 };
-static const long double Q[] = {
+static const TASELDOUBLE Q[] = {
  1.00000000000000000000e0L,
 -1.67955233807178858919e1L,
  8.85946791747759881659e1L,
@@ -110,7 +110,7 @@ static const long double Q[] = {
 };
 */
 #define MAXGAML 1755.455L
-/*static const long double LOGPI = 1.14472988584940017414L;*/
+/*static const TASELDOUBLE LOGPI = 1.14472988584940017414L;*/
 
 /* Stirling's formula for the gamma function
 tgamma(x) = sqrt(2 pi) x^(x-.5) exp(-x) (1 + 1/x P(1/x))
@@ -121,7 +121,7 @@ n=8, d=0
 Peak error =  9.44e-21
 Relative error spread =  8.8e-4
 */
-static const long double STIR[9] = {
+static const TASELDOUBLE STIR[9] = {
  7.147391378143610789273E-4L,
 -2.363848809501759061727E-5L,
 -5.950237554056330156018E-4L,
@@ -134,14 +134,14 @@ static const long double STIR[9] = {
 };
 
 #define MAXSTIR 1024.0L
-static const long double SQTPI = 2.50662827463100050242E0L;
+static const TASELDOUBLE SQTPI = 2.50662827463100050242E0L;
 
 /* 1/tgamma(x) = z P(z)
  * z(x) = 1/x
  * 0 < x < 0.03125
  * Peak relative error 4.2e-23
  */
-static const long double S[9] = {
+static const TASELDOUBLE S[9] = {
 -1.193945051381510095614E-3L,
  7.220599478036909672331E-3L,
 -9.622023360406271645744E-3L,
@@ -159,7 +159,7 @@ static const long double S[9] = {
  * Peak relative error 5.16e-23
  * Relative error spread =  2.5e-24
  */
-static const long double SN[9] = {
+static const TASELDOUBLE SN[9] = {
  1.133374167243894382010E-3L,
  7.220837261893170325704E-3L,
  9.621911155035976733706E-3L,
@@ -171,13 +171,13 @@ static const long double SN[9] = {
 -1.000000000000000000000E0L,
 };
 
-static const long double PIL = 3.1415926535897932384626L;
+static const TASELDOUBLE PIL = 3.1415926535897932384626L;
 
 /* Gamma function computed by Stirling's formula.
  */
-static long double stirf(long double x)
+static TASELDOUBLE stirf(TASELDOUBLE x)
 {
-	long double y, w, v;
+	TASELDOUBLE y, w, v;
 
 	w = 1.0/x;
 	/* For large x, use rational coefficients from the analytical expansion.  */
@@ -202,9 +202,9 @@ static long double stirf(long double x)
 	return y;
 }
 
-long double tgammal(long double x)
+TASELDOUBLE tgammal(TASELDOUBLE x)
 {
-	long double p, q, z;
+	TASELDOUBLE p, q, z;
 
 	if (!isfinite(x))
 		return x + INFINITY;
@@ -274,7 +274,7 @@ small:
 }
 #elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384
 // TODO: broken implementation to make things compile
-long double tgammal(long double x)
+TASELDOUBLE tgammal(TASELDOUBLE x)
 {
 	return tgamma(x);
 }

@@ -689,7 +689,7 @@ if $CC $CFLAGS_C99FSE \
 printf "yes\n"
 else
 printf "no\n"
-fail "$0: error: unsupported long double type"
+#fail "$0: error: unsupported long double type"
 fi
 
 #

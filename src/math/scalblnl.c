@@ -3,12 +3,12 @@
 #include <float.h>
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double scalblnl(long double x, long n)
+TASELDOUBLE scalblnl(TASELDOUBLE x, long n)
 {
 	return scalbln(x, n);
 }
 #else
-long double scalblnl(long double x, long n)
+TASELDOUBLE scalblnl(TASELDOUBLE x, long n)
 {
 	if (n > INT_MAX)
 		n = INT_MAX;

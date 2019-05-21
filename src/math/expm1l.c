@@ -21,7 +21,7 @@
  *
  * SYNOPSIS:
  *
- * long double x, y, expm1l();
+ * TASELDOUBLE x, y, expm1l();
  *
  * y = expm1l( x );
  *
@@ -50,7 +50,7 @@
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double expm1l(long double x)
+TASELDOUBLE expm1l(TASELDOUBLE x)
 {
 	return expm1(x);
 }
@@ -59,7 +59,7 @@ long double expm1l(long double x)
 /* exp(x) - 1 = x + 0.5 x^2 + x^3 P(x)/Q(x)
    -.5 ln 2  <  x  <  .5 ln 2
    Theoretical peak relative error = 3.4e-22  */
-static const long double
+static const TASELDOUBLE
 P0 = -1.586135578666346600772998894928250240826E4L,
 P1 =  2.642771505685952966904660652518429479531E3L,
 P2 = -3.423199068835684263987132888286791620673E2L,
@@ -79,9 +79,9 @@ minarg = -4.5054566736396445112120088E1L,
 /* ln 2^16384 */
 maxarg = 1.1356523406294143949492E4L;
 
-long double expm1l(long double x)
+TASELDOUBLE expm1l(TASELDOUBLE x)
 {
-	long double px, qx, xx;
+	TASELDOUBLE px, qx, xx;
 	int k;
 
 	if (isnan(x))
@@ -116,7 +116,7 @@ long double expm1l(long double x)
 }
 #elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384
 // TODO: broken implementation to make things compile
-long double expm1l(long double x)
+TASELDOUBLE expm1l(TASELDOUBLE x)
 {
 	return expm1(x);
 }

@@ -10,17 +10,17 @@
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 #elif LDBL_MANT_DIG == 64 && LDBL_MAX_EXP == 16384 && __BYTE_ORDER == __LITTLE_ENDIAN
 union ldshape {
-	long double f;
+	TASELDOUBLE f;
 	struct {
 		uint64_t m;
 		uint16_t se;
 	} i;
 };
 #elif LDBL_MANT_DIG == 64 && LDBL_MAX_EXP == 16384 && __BYTE_ORDER == __BIG_ENDIAN
-/* This is the m68k variant of 80-bit long double, and this definition only works
+/* This is the m68k variant of 80-bit TASELDOUBLE, and this definition only works
  * on archs where the alignment requirement of uint64_t is <= 4. */
 union ldshape {
-	long double f;
+	TASELDOUBLE f;
 	struct {
 		uint16_t se;
 		uint16_t pad;
@@ -29,7 +29,7 @@ union ldshape {
 };
 #elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384 && __BYTE_ORDER == __LITTLE_ENDIAN
 union ldshape {
-	long double f;
+	TASELDOUBLE f;
 	struct {
 		uint64_t lo;
 		uint32_t mid;
@@ -43,7 +43,7 @@ union ldshape {
 };
 #elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384 && __BYTE_ORDER == __BIG_ENDIAN
 union ldshape {
-	long double f;
+	TASELDOUBLE f;
 	struct {
 		uint16_t se;
 		uint16_t top;
@@ -56,7 +56,7 @@ union ldshape {
 	} i2;
 };
 #else
-#error Unsupported long double representation
+#error Unsupported TASELDOUBLE representation
 #endif
 
 /* Support non-nearest rounding mode.  */
@@ -137,9 +137,9 @@ static inline double fp_barrier(double x)
 
 #ifndef fp_barrierl
 #define fp_barrierl fp_barrierl
-static inline long double fp_barrierl(long double x)
+static inline TASELDOUBLE fp_barrierl(TASELDOUBLE x)
 {
-	volatile long double y = x;
+	volatile TASELDOUBLE y = x;
 	return y;
 }
 #endif
@@ -170,9 +170,9 @@ static inline void fp_force_eval(double x)
 
 #ifndef fp_force_evall
 #define fp_force_evall fp_force_evall
-static inline void fp_force_evall(long double x)
+static inline void fp_force_evall(TASELDOUBLE x)
 {
-	volatile long double y;
+	volatile TASELDOUBLE y;
 	y = x;
 }
 #endif
@@ -244,13 +244,13 @@ hidden float  __cosdf(double);
 hidden float  __tandf(double,int);
 hidden float  __expo2f(float);
 
-hidden int __rem_pio2l(long double, long double *);
-hidden long double __sinl(long double, long double, int);
-hidden long double __cosl(long double, long double);
-hidden long double __tanl(long double, long double, int);
+hidden int __rem_pio2l(TASELDOUBLE, TASELDOUBLE *);
+hidden TASELDOUBLE __sinl(TASELDOUBLE, TASELDOUBLE, int);
+hidden TASELDOUBLE __cosl(TASELDOUBLE, TASELDOUBLE);
+hidden TASELDOUBLE __tanl(TASELDOUBLE, TASELDOUBLE, int);
 
-hidden long double __polevll(long double, const long double *, int);
-hidden long double __p1evll(long double, const long double *, int);
+hidden TASELDOUBLE __polevll(TASELDOUBLE, const TASELDOUBLE *, int);
+hidden TASELDOUBLE __p1evll(TASELDOUBLE, const TASELDOUBLE *, int);
 
 extern int __signgam;
 hidden double __lgamma_r(double, int *);

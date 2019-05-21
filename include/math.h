@@ -21,7 +21,7 @@ extern "C" {
 
 #define HUGE_VALF INFINITY
 #define HUGE_VAL  ((double)INFINITY)
-#define HUGE_VALL ((long double)INFINITY)
+#define HUGE_VALL ((TASELDOUBLE)INFINITY)
 
 #define MATH_ERRNO  1
 #define MATH_ERREXCEPT 2
@@ -50,7 +50,7 @@ extern "C" {
 
 int __fpclassify(double);
 int __fpclassifyf(float);
-int __fpclassifyl(long double);
+int __fpclassifyl(TASELDOUBLE);
 
 static __inline unsigned __FLOAT_BITS(float __f)
 {
@@ -92,7 +92,7 @@ static __inline unsigned long long __DOUBLE_BITS(double __f)
 
 int __signbit(double);
 int __signbitf(float);
-int __signbitl(long double);
+int __signbitl(TASELDOUBLE);
 
 #define signbit(x) ( \
 	sizeof(x) == sizeof(float) ? (int)(__FLOAT_BITS(x)>>31) : \
@@ -107,19 +107,19 @@ static __inline int __is##rel(type __x, type __y) \
 
 __ISREL_DEF(lessf, <, float_t)
 __ISREL_DEF(less, <, double_t)
-__ISREL_DEF(lessl, <, long double)
+__ISREL_DEF(lessl, <, TASELDOUBLE)
 __ISREL_DEF(lessequalf, <=, float_t)
 __ISREL_DEF(lessequal, <=, double_t)
-__ISREL_DEF(lessequall, <=, long double)
+__ISREL_DEF(lessequall, <=, TASELDOUBLE)
 __ISREL_DEF(lessgreaterf, !=, float_t)
 __ISREL_DEF(lessgreater, !=, double_t)
-__ISREL_DEF(lessgreaterl, !=, long double)
+__ISREL_DEF(lessgreaterl, !=, TASELDOUBLE)
 __ISREL_DEF(greaterf, >, float_t)
 __ISREL_DEF(greater, >, double_t)
-__ISREL_DEF(greaterl, >, long double)
+__ISREL_DEF(greaterl, >, TASELDOUBLE)
 __ISREL_DEF(greaterequalf, >=, float_t)
 __ISREL_DEF(greaterequal, >=, double_t)
-__ISREL_DEF(greaterequall, >=, long double)
+__ISREL_DEF(greaterequall, >=, TASELDOUBLE)
 
 #define __tg_pred_2(x, y, p) ( \
 	sizeof((x)+(y)) == sizeof(float) ? p##f(x, y) : \
@@ -134,231 +134,231 @@ __ISREL_DEF(greaterequall, >=, long double)
 
 double      acos(double);
 float       acosf(float);
-long double acosl(long double);
+TASELDOUBLE acosl(TASELDOUBLE);
 
 double      acosh(double);
 float       acoshf(float);
-long double acoshl(long double);
+TASELDOUBLE acoshl(TASELDOUBLE);
 
 double      asin(double);
 float       asinf(float);
-long double asinl(long double);
+TASELDOUBLE asinl(TASELDOUBLE);
 
 double      asinh(double);
 float       asinhf(float);
-long double asinhl(long double);
+TASELDOUBLE asinhl(TASELDOUBLE);
 
 double      atan(double);
 float       atanf(float);
-long double atanl(long double);
+TASELDOUBLE atanl(TASELDOUBLE);
 
 double      atan2(double, double);
 float       atan2f(float, float);
-long double atan2l(long double, long double);
+TASELDOUBLE atan2l(TASELDOUBLE, TASELDOUBLE);
 
 double      atanh(double);
 float       atanhf(float);
-long double atanhl(long double);
+TASELDOUBLE atanhl(TASELDOUBLE);
 
 double      cbrt(double);
 float       cbrtf(float);
-long double cbrtl(long double);
+TASELDOUBLE cbrtl(TASELDOUBLE);
 
 double      ceil(double);
 float       ceilf(float);
-long double ceill(long double);
+TASELDOUBLE ceill(TASELDOUBLE);
 
 double      copysign(double, double);
 float       copysignf(float, float);
-long double copysignl(long double, long double);
+TASELDOUBLE copysignl(TASELDOUBLE, TASELDOUBLE);
 
 double      cos(double);
 float       cosf(float);
-long double cosl(long double);
+TASELDOUBLE cosl(TASELDOUBLE);
 
 double      cosh(double);
 float       coshf(float);
-long double coshl(long double);
+TASELDOUBLE coshl(TASELDOUBLE);
 
 double      erf(double);
 float       erff(float);
-long double erfl(long double);
+TASELDOUBLE erfl(TASELDOUBLE);
 
 double      erfc(double);
 float       erfcf(float);
-long double erfcl(long double);
+TASELDOUBLE erfcl(TASELDOUBLE);
 
 double      exp(double);
 float       expf(float);
-long double expl(long double);
+TASELDOUBLE expl(TASELDOUBLE);
 
 double      exp2(double);
 float       exp2f(float);
-long double exp2l(long double);
+TASELDOUBLE exp2l(TASELDOUBLE);
 
 double      expm1(double);
 float       expm1f(float);
-long double expm1l(long double);
+TASELDOUBLE expm1l(TASELDOUBLE);
 
 double      fabs(double);
 float       fabsf(float);
-long double fabsl(long double);
+TASELDOUBLE fabsl(TASELDOUBLE);
 
 double      fdim(double, double);
 float       fdimf(float, float);
-long double fdiml(long double, long double);
+TASELDOUBLE fdiml(TASELDOUBLE, TASELDOUBLE);
 
 double      floor(double);
 float       floorf(float);
-long double floorl(long double);
+TASELDOUBLE floorl(TASELDOUBLE);
 
 double      fma(double, double, double);
 float       fmaf(float, float, float);
-long double fmal(long double, long double, long double);
+TASELDOUBLE fmal(TASELDOUBLE, TASELDOUBLE, TASELDOUBLE);
 
 double      fmax(double, double);
 float       fmaxf(float, float);
-long double fmaxl(long double, long double);
+TASELDOUBLE fmaxl(TASELDOUBLE, TASELDOUBLE);
 
 double      fmin(double, double);
 float       fminf(float, float);
-long double fminl(long double, long double);
+TASELDOUBLE fminl(TASELDOUBLE, TASELDOUBLE);
 
 double      fmod(double, double);
 float       fmodf(float, float);
-long double fmodl(long double, long double);
+TASELDOUBLE fmodl(TASELDOUBLE, TASELDOUBLE);
 
 double      frexp(double, int *);
 float       frexpf(float, int *);
-long double frexpl(long double, int *);
+TASELDOUBLE frexpl(TASELDOUBLE, int *);
 
 double      hypot(double, double);
 float       hypotf(float, float);
-long double hypotl(long double, long double);
+TASELDOUBLE hypotl(TASELDOUBLE, TASELDOUBLE);
 
 int         ilogb(double);
 int         ilogbf(float);
-int         ilogbl(long double);
+int         ilogbl(TASELDOUBLE);
 
 double      ldexp(double, int);
 float       ldexpf(float, int);
-long double ldexpl(long double, int);
+TASELDOUBLE ldexpl(TASELDOUBLE, int);
 
 double      lgamma(double);
 float       lgammaf(float);
-long double lgammal(long double);
+TASELDOUBLE lgammal(TASELDOUBLE);
 
 long long   llrint(double);
 long long   llrintf(float);
-long long   llrintl(long double);
+long long   llrintl(TASELDOUBLE);
 
 long long   llround(double);
 long long   llroundf(float);
-long long   llroundl(long double);
+long long   llroundl(TASELDOUBLE);
 
 double      log(double);
 float       logf(float);
-long double logl(long double);
+TASELDOUBLE logl(TASELDOUBLE);
 
 double      log10(double);
 float       log10f(float);
-long double log10l(long double);
+TASELDOUBLE log10l(TASELDOUBLE);
 
 double      log1p(double);
 float       log1pf(float);
-long double log1pl(long double);
+TASELDOUBLE log1pl(TASELDOUBLE);
 
 double      log2(double);
 float       log2f(float);
-long double log2l(long double);
+TASELDOUBLE log2l(TASELDOUBLE);
 
 double      logb(double);
 float       logbf(float);
-long double logbl(long double);
+TASELDOUBLE logbl(TASELDOUBLE);
 
 long        lrint(double);
 long        lrintf(float);
-long        lrintl(long double);
+long        lrintl(TASELDOUBLE);
 
 long        lround(double);
 long        lroundf(float);
-long        lroundl(long double);
+long        lroundl(TASELDOUBLE);
 
 double      modf(double, double *);
 float       modff(float, float *);
-long double modfl(long double, long double *);
+TASELDOUBLE modfl(TASELDOUBLE, TASELDOUBLE *);
 
 double      nan(const char *);
 float       nanf(const char *);
-long double nanl(const char *);
+TASELDOUBLE nanl(const char *);
 
 double      nearbyint(double);
 float       nearbyintf(float);
-long double nearbyintl(long double);
+TASELDOUBLE nearbyintl(TASELDOUBLE);
 
 double      nextafter(double, double);
 float       nextafterf(float, float);
-long double nextafterl(long double, long double);
+TASELDOUBLE nextafterl(TASELDOUBLE, TASELDOUBLE);
 
-double      nexttoward(double, long double);
-float       nexttowardf(float, long double);
-long double nexttowardl(long double, long double);
+double      nexttoward(double, TASELDOUBLE);
+float       nexttowardf(float, TASELDOUBLE);
+TASELDOUBLE nexttowardl(TASELDOUBLE, TASELDOUBLE);
 
 double      pow(double, double);
 float       powf(float, float);
-long double powl(long double, long double);
+TASELDOUBLE powl(TASELDOUBLE, TASELDOUBLE);
 
 double      remainder(double, double);
 float       remainderf(float, float);
-long double remainderl(long double, long double);
+TASELDOUBLE remainderl(TASELDOUBLE, TASELDOUBLE);
 
 double      remquo(double, double, int *);
 float       remquof(float, float, int *);
-long double remquol(long double, long double, int *);
+TASELDOUBLE remquol(TASELDOUBLE, TASELDOUBLE, int *);
 
 double      rint(double);
 float       rintf(float);
-long double rintl(long double);
+TASELDOUBLE rintl(TASELDOUBLE);
 
 double      round(double);
 float       roundf(float);
-long double roundl(long double);
+TASELDOUBLE roundl(TASELDOUBLE);
 
 double      scalbln(double, long);
 float       scalblnf(float, long);
-long double scalblnl(long double, long);
+TASELDOUBLE scalblnl(TASELDOUBLE, long);
 
 double      scalbn(double, int);
 float       scalbnf(float, int);
-long double scalbnl(long double, int);
+TASELDOUBLE scalbnl(TASELDOUBLE, int);
 
 double      sin(double);
 float       sinf(float);
-long double sinl(long double);
+TASELDOUBLE sinl(TASELDOUBLE);
 
 double      sinh(double);
 float       sinhf(float);
-long double sinhl(long double);
+TASELDOUBLE sinhl(TASELDOUBLE);
 
 double      sqrt(double);
 float       sqrtf(float);
-long double sqrtl(long double);
+TASELDOUBLE sqrtl(TASELDOUBLE);
 
 double      tan(double);
 float       tanf(float);
-long double tanl(long double);
+TASELDOUBLE tanl(TASELDOUBLE);
 
 double      tanh(double);
 float       tanhf(float);
-long double tanhl(long double);
+TASELDOUBLE tanhl(TASELDOUBLE);
 
 double      tgamma(double);
 float       tgammaf(float);
-long double tgammal(long double);
+TASELDOUBLE tgammal(TASELDOUBLE);
 
 double      trunc(double);
 float       truncf(float);
-long double truncl(long double);
+TASELDOUBLE truncl(TASELDOUBLE);
 
 
 #if defined(_XOPEN_SOURCE) || defined(_BSD_SOURCE)
@@ -420,19 +420,19 @@ float       ynf(int, float);
 #endif
 
 #ifdef _GNU_SOURCE
-long double lgammal_r(long double, int*);
+TASELDOUBLE lgammal_r(TASELDOUBLE, int*);
 
 void        sincos(double, double*, double*);
 void        sincosf(float, float*, float*);
-void        sincosl(long double, long double*, long double*);
+void        sincosl(TASELDOUBLE, TASELDOUBLE*, TASELDOUBLE*);
 
 double      exp10(double);
 float       exp10f(float);
-long double exp10l(long double);
+TASELDOUBLE exp10l(TASELDOUBLE);
 
 double      pow10(double);
 float       pow10f(float);
-long double pow10l(long double);
+TASELDOUBLE pow10l(TASELDOUBLE);
 #endif
 
 #ifdef __cplusplus

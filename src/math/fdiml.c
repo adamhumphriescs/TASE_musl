@@ -2,12 +2,12 @@
 #include <float.h>
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double fdiml(long double x, long double y)
+TASELDOUBLE fdiml(TASELDOUBLE x, TASELDOUBLE y)
 {
 	return fdim(x, y);
 }
 #else
-long double fdiml(long double x, long double y)
+TASELDOUBLE fdiml(TASELDOUBLE x, TASELDOUBLE y)
 {
 	if (isnan(x))
 		return x;

@@ -44,10 +44,11 @@ CPPFLAGS =
 CFLAGS =
 CFLAGS_AUTO = -Os -pipe
 CFLAGS_C99FSE = -std=c99 -ffreestanding -nostdinc 
+#CFLAGS_TASE = -mllvm -x86-tase-instrumentation-mode=simd
 
 CFLAGS_ALL = $(CFLAGS_C99FSE)
 CFLAGS_ALL += -D_XOPEN_SOURCE=700 -I$(srcdir)/arch/$(ARCH) -I$(srcdir)/arch/generic -Iobj/src/internal -I$(srcdir)/src/include -I$(srcdir)/src/internal -Iobj/include -I$(srcdir)/include
-CFLAGS_ALL += $(CPPFLAGS) $(CFLAGS_AUTO) $(CFLAGS)
+CFLAGS_ALL += $(CPPFLAGS) $(CFLAGS_AUTO) $(CFLAGS) $(CFLAGS_TASE)
 
 LDFLAGS_ALL = $(LDFLAGS_AUTO) $(LDFLAGS)
 
@@ -126,6 +127,8 @@ NOSSP_OBJS = $(CRT_OBJS) $(LDSO_OBJS) $(filter \
 $(NOSSP_OBJS) $(NOSSP_OBJS:%.o=%.lo): CFLAGS_ALL += $(CFLAGS_NOSSP)
 
 $(CRT_OBJS): CFLAGS_ALL += -DCRT
+
+$(CRT_OBJS): CFLAGS_TASE = -mllvm -x86-tase-instrumentation-mode=none
 
 $(LOBJS) $(LDSO_OBJS): CFLAGS_ALL += -fPIC
 

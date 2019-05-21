@@ -1,15 +1,15 @@
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double tanl(long double x)
+TASELDOUBLE tanl(TASELDOUBLE x)
 {
 	return tan(x);
 }
 #elif (LDBL_MANT_DIG == 64 || LDBL_MANT_DIG == 113) && LDBL_MAX_EXP == 16384
-long double tanl(long double x)
+TASELDOUBLE tanl(TASELDOUBLE x)
 {
 	union ldshape u = {x};
-	long double y[2];
+	TASELDOUBLE y[2];
 	unsigned n;
 
 	u.i.se &= 0x7fff;

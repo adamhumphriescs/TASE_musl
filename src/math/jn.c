@@ -176,7 +176,7 @@ double jn(int n, double x)
 			 *  Hence, if n*(log(2n/x)) > ...
 			 *  single 8.8722839355e+01
 			 *  double 7.09782712893383973096e+02
-			 *  long double 1.1356523406294143949491931077970765006170e+04
+			 *  TASELDOUBLE 1.1356523406294143949491931077970765006170e+04
 			 *  then recurrent value may overflow and the result is
 			 *  likely underflow to zero
 			 */

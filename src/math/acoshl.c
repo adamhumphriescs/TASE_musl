@@ -1,13 +1,13 @@
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double acoshl(long double x)
+TASELDOUBLE acoshl(TASELDOUBLE x)
 {
 	return acosh(x);
 }
 #elif LDBL_MANT_DIG == 64 && LDBL_MAX_EXP == 16384
 /* acosh(x) = log(x + sqrt(x*x-1)) */
-long double acoshl(long double x)
+TASELDOUBLE acoshl(TASELDOUBLE x)
 {
 	union ldshape u = {x};
 	int e = u.i.se & 0x7fff;
@@ -22,7 +22,7 @@ long double acoshl(long double x)
 }
 #elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384
 // TODO: broken implementation to make things compile
-long double acoshl(long double x)
+TASELDOUBLE acoshl(TASELDOUBLE x)
 {
 	return acosh(x);
 }

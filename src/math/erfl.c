@@ -101,16 +101,16 @@
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double erfl(long double x)
+TASELDOUBLE erfl(TASELDOUBLE x)
 {
 	return erf(x);
 }
-long double erfcl(long double x)
+TASELDOUBLE erfcl(TASELDOUBLE x)
 {
 	return erfc(x);
 }
 #elif LDBL_MANT_DIG == 64 && LDBL_MAX_EXP == 16384
-static const long double
+static const TASELDOUBLE
 erx = 0.845062911510467529296875L,
 
 /*
@@ -239,9 +239,9 @@ sc[] = {
 	/* 1.000000000000000000000000000000000000000E0 */
 };
 
-static long double erfc1(long double x)
+static TASELDOUBLE erfc1(TASELDOUBLE x)
 {
-	long double s,P,Q;
+	TASELDOUBLE s,P,Q;
 
 	s = fabsl(x) - 1;
 	P = pa[0] + s * (pa[1] + s * (pa[2] +
@@ -251,10 +251,10 @@ static long double erfc1(long double x)
 	return 1 - erx - P / Q;
 }
 
-static long double erfc2(uint32_t ix, long double x)
+static TASELDOUBLE erfc2(uint32_t ix, TASELDOUBLE x)
 {
 	union ldshape u;
-	long double s,z,R,S;
+	TASELDOUBLE s,z,R,S;
 
 	if (ix < 0x3fffa000)  /* 0.84375 <= |x| < 1.25 */
 		return erfc1(x);
@@ -283,9 +283,9 @@ static long double erfc2(uint32_t ix, long double x)
 	return expl(-z*z - 0.5625) * expl((z - x) * (z + x) + R / S) / x;
 }
 
-long double erfl(long double x)
+TASELDOUBLE erfl(TASELDOUBLE x)
 {
-	long double r, s, z, y;
+	TASELDOUBLE r, s, z, y;
 	union ldshape u = {x};
 	uint32_t ix = (u.i.se & 0x7fffU)<<16 | u.i.m>>48;
 	int sign = u.i.se >> 15;
@@ -312,9 +312,9 @@ long double erfl(long double x)
 	return sign ? -y : y;
 }
 
-long double erfcl(long double x)
+TASELDOUBLE erfcl(TASELDOUBLE x)
 {
-	long double r, s, z, y;
+	TASELDOUBLE r, s, z, y;
 	union ldshape u = {x};
 	uint32_t ix = (u.i.se & 0x7fffU)<<16 | u.i.m>>48;
 	int sign = u.i.se >> 15;
@@ -342,11 +342,11 @@ long double erfcl(long double x)
 }
 #elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384
 // TODO: broken implementation to make things compile
-long double erfl(long double x)
+TASELDOUBLE erfl(TASELDOUBLE x)
 {
 	return erf(x);
 }
-long double erfcl(long double x)
+TASELDOUBLE erfcl(TASELDOUBLE x)
 {
 	return erfc(x);
 }

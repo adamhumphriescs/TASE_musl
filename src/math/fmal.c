@@ -28,7 +28,7 @@
 
 #include "libm.h"
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double fmal(long double x, long double y, long double z)
+TASELDOUBLE fmal(TASELDOUBLE x, TASELDOUBLE y, TASELDOUBLE z)
 {
 	return fma(x, y, z);
 }
@@ -44,12 +44,12 @@ long double fmal(long double x, long double y, long double z)
 
 /*
  * A struct dd represents a floating-point number with twice the precision
- * of a long double.  We maintain the invariant that "hi" stores the high-order
+ * of a TASELDOUBLE.  We maintain the invariant that "hi" stores the high-order
  * bits of the result.
  */
 struct dd {
-	long double hi;
-	long double lo;
+	TASELDOUBLE hi;
+	TASELDOUBLE lo;
 };
 
 /*
@@ -57,10 +57,10 @@ struct dd {
  * that both a and b are finite, but make no assumptions about their relative
  * magnitudes.
  */
-static inline struct dd dd_add(long double a, long double b)
+static inline struct dd dd_add(TASELDOUBLE a, TASELDOUBLE b)
 {
 	struct dd ret;
-	long double s;
+	TASELDOUBLE s;
 
 	ret.hi = a + b;
 	s = ret.hi - a;
@@ -79,7 +79,7 @@ static inline struct dd dd_add(long double a, long double b)
  *     J. Coonen.  An Implementation Guide to a Proposed Standard for
  *     Floating-Point Arithmetic.  Computer, vol. 13, no. 1, Jan 1980.
  */
-static inline long double add_adjusted(long double a, long double b)
+static inline TASELDOUBLE add_adjusted(TASELDOUBLE a, TASELDOUBLE b)
 {
 	struct dd sum;
 	union ldshape u;
@@ -98,7 +98,7 @@ static inline long double add_adjusted(long double a, long double b)
  * that the result will be subnormal, and care is taken to ensure that
  * double rounding does not occur.
  */
-static inline long double add_and_denormalize(long double a, long double b, int scale)
+static inline TASELDOUBLE add_and_denormalize(TASELDOUBLE a, TASELDOUBLE b, int scale)
 {
 	struct dd sum;
 	int bits_lost;
@@ -130,10 +130,10 @@ static inline long double add_and_denormalize(long double a, long double b, int 
  * that both a and b are normalized, so no underflow or overflow will occur.
  * The current rounding mode must be round-to-nearest.
  */
-static inline struct dd dd_mul(long double a, long double b)
+static inline struct dd dd_mul(TASELDOUBLE a, TASELDOUBLE b)
 {
 	struct dd ret;
-	long double ha, hb, la, lb, p, q;
+	TASELDOUBLE ha, hb, la, lb, p, q;
 
 	p = a * SPLIT;
 	ha = a - p;
@@ -162,10 +162,10 @@ static inline struct dd dd_mul(long double a, long double b)
  *      Dekker, T.  A Floating-Point Technique for Extending the
  *      Available Precision.  Numer. Math. 18, 224-242 (1971).
  */
-long double fmal(long double x, long double y, long double z)
+TASELDOUBLE fmal(TASELDOUBLE x, TASELDOUBLE y, TASELDOUBLE z)
 {
 	#pragma STDC FENV_ACCESS ON
-	long double xs, ys, zs, adj;
+	TASELDOUBLE xs, ys, zs, adj;
 	struct dd xy, r;
 	int oround;
 	int ex, ey, ez;
@@ -256,7 +256,7 @@ long double fmal(long double x, long double y, long double z)
 		 * the correct sign.
 		 */
 		fesetround(oround);
-		volatile long double vzs = zs; /* XXX gcc CSE bug workaround */
+		volatile TASELDOUBLE vzs = zs; /* XXX gcc CSE bug workaround */
 		return xy.hi + vzs + scalbnl(xy.lo, spread);
 	}
 
@@ -267,7 +267,7 @@ long double fmal(long double x, long double y, long double z)
 		 * But underflow may not be raised correctly, example in downward rounding:
 		 * fmal(0x1.0000000001p-16000L, 0x1.0000000001p-400L, -0x1p-16440L)
 		 */
-		long double ret;
+		TASELDOUBLE ret;
 #if defined(FE_INEXACT) && defined(FE_UNDERFLOW)
 		int e = fetestexcept(FE_INEXACT);
 		feclearexcept(FE_INEXACT);

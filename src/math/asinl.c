@@ -11,13 +11,13 @@
  */
 /*
  * See comments in asin.c.
- * Converted to long double by David Schultz <das@FreeBSD.ORG>.
+ * Converted to TASELDOUBLE by David Schultz <das@FreeBSD.ORG>.
  */
 
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double asinl(long double x)
+TASELDOUBLE asinl(TASELDOUBLE x)
 {
 	return asin(x);
 }
@@ -31,10 +31,10 @@ long double asinl(long double x)
 #define CLEARBOTTOM(u) (u.i.lo = 0)
 #endif
 
-long double asinl(long double x)
+TASELDOUBLE asinl(TASELDOUBLE x)
 {
 	union ldshape u = {x};
-	long double z, r, s;
+	TASELDOUBLE z, r, s;
 	uint16_t e = u.i.se & 0x7fff;
 	int sign = u.i.se >> 15;
 
@@ -59,7 +59,7 @@ long double asinl(long double x)
 	if (CLOSETO1(u)) {
 		x = pio2_hi - (2*(s+s*r)-pio2_lo);
 	} else {
-		long double f, c;
+		TASELDOUBLE f, c;
 		u.f = s;
 		CLEARBOTTOM(u);
 		f = u.f;

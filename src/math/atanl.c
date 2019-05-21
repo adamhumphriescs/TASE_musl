@@ -11,13 +11,13 @@
  */
 /*
  * See comments in atan.c.
- * Converted to long double by David Schultz <das@FreeBSD.ORG>.
+ * Converted to TASELDOUBLE by David Schultz <das@FreeBSD.ORG>.
  */
 
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double atanl(long double x)
+TASELDOUBLE atanl(TASELDOUBLE x)
 {
 	return atan(x);
 }
@@ -26,21 +26,21 @@ long double atanl(long double x)
 #if LDBL_MANT_DIG == 64
 #define EXPMAN(u) ((u.i.se & 0x7fff)<<8 | (u.i.m>>55 & 0xff))
 
-static const long double atanhi[] = {
+static const TASELDOUBLE atanhi[] = {
 	 4.63647609000806116202e-01L,
 	 7.85398163397448309628e-01L,
 	 9.82793723247329067960e-01L,
 	 1.57079632679489661926e+00L,
 };
 
-static const long double atanlo[] = {
+static const TASELDOUBLE atanlo[] = {
 	 1.18469937025062860669e-20L,
 	-1.25413940316708300586e-20L,
 	 2.55232234165405176172e-20L,
 	-2.50827880633416601173e-20L,
 };
 
-static const long double aT[] = {
+static const TASELDOUBLE aT[] = {
 	 3.33333333333333333017e-01L,
 	-1.99999999999999632011e-01L,
 	 1.42857142857046531280e-01L,
@@ -56,13 +56,13 @@ static const long double aT[] = {
 	 1.24822046299269234080e-02L,
 };
 
-static long double T_even(long double x)
+static TASELDOUBLE T_even(TASELDOUBLE x)
 {
 	return aT[0] + x * (aT[2] + x * (aT[4] + x * (aT[6] +
 		x * (aT[8] + x * (aT[10] + x * aT[12])))));
 }
 
-static long double T_odd(long double x)
+static TASELDOUBLE T_odd(TASELDOUBLE x)
 {
 	return aT[1] + x * (aT[3] + x * (aT[5] + x * (aT[7] +
 		x * (aT[9] + x * aT[11]))));
@@ -70,21 +70,21 @@ static long double T_odd(long double x)
 #elif LDBL_MANT_DIG == 113
 #define EXPMAN(u) ((u.i.se & 0x7fff)<<8 | u.i.top>>8)
 
-static const long double atanhi[] = {
+static const TASELDOUBLE atanhi[] = {
 	 4.63647609000806116214256231461214397e-01L,
 	 7.85398163397448309615660845819875699e-01L,
 	 9.82793723247329067985710611014666038e-01L,
 	 1.57079632679489661923132169163975140e+00L,
 };
 
-static const long double atanlo[] = {
+static const TASELDOUBLE atanlo[] = {
 	 4.89509642257333492668618435220297706e-36L,
 	 2.16795253253094525619926100651083806e-35L,
 	-2.31288434538183565909319952098066272e-35L,
 	 4.33590506506189051239852201302167613e-35L,
 };
 
-static const long double aT[] = {
+static const TASELDOUBLE aT[] = {
 	 3.33333333333333333333333333333333125e-01L,
 	-1.99999999999999999999999999999180430e-01L,
 	 1.42857142857142857142857142125269827e-01L,
@@ -111,14 +111,14 @@ static const long double aT[] = {
 	-2.58521121597609872727919154569765469e-03L,
 };
 
-static long double T_even(long double x)
+static TASELDOUBLE T_even(TASELDOUBLE x)
 {
 	return (aT[0] + x * (aT[2] + x * (aT[4] + x * (aT[6] + x * (aT[8] +
 		x * (aT[10] + x * (aT[12] + x * (aT[14] + x * (aT[16] +
 		x * (aT[18] + x * (aT[20] + x * aT[22])))))))))));
 }
 
-static long double T_odd(long double x)
+static TASELDOUBLE T_odd(TASELDOUBLE x)
 {
 	return (aT[1] + x * (aT[3] + x * (aT[5] + x * (aT[7] + x * (aT[9] +
 		x * (aT[11] + x * (aT[13] + x * (aT[15] + x * (aT[17] +
@@ -126,10 +126,10 @@ static long double T_odd(long double x)
 }
 #endif
 
-long double atanl(long double x)
+TASELDOUBLE atanl(TASELDOUBLE x)
 {
 	union ldshape u = {x};
-	long double w, s1, s2, z;
+	TASELDOUBLE w, s1, s2, z;
 	int id;
 	unsigned e = u.i.se & 0x7fff;
 	unsigned sign = u.i.se >> 15;

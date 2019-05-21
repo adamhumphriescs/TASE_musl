@@ -21,7 +21,7 @@
  * SYNOPSIS:
  *
  * int N;
- * long double x, y, coef[N+1], polevl[];
+ * TASELDOUBLE x, y, coef[N+1], polevl[];
  *
  * y = polevll( x, coef, N );
  *
@@ -62,9 +62,9 @@
  * Polynomial evaluator:
  *  P[0] x^n  +  P[1] x^(n-1)  +  ...  +  P[n]
  */
-long double __polevll(long double x, const long double *P, int n)
+TASELDOUBLE __polevll(TASELDOUBLE x, const TASELDOUBLE *P, int n)
 {
-	long double y;
+	TASELDOUBLE y;
 
 	y = *P++;
 	do {
@@ -78,9 +78,9 @@ long double __polevll(long double x, const long double *P, int n)
  * Polynomial evaluator:
  *  x^n  +  P[0] x^(n-1)  +  P[1] x^(n-2)  +  ...  +  P[n]
  */
-long double __p1evll(long double x, const long double *P, int n)
+TASELDOUBLE __p1evll(TASELDOUBLE x, const TASELDOUBLE *P, int n)
 {
-	long double y;
+	TASELDOUBLE y;
 
 	n -= 1;
 	y = x + *P++;

@@ -1,12 +1,12 @@
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double nextafterl(long double x, long double y)
+TASELDOUBLE nextafterl(TASELDOUBLE x, TASELDOUBLE y)
 {
 	return nextafter(x, y);
 }
 #elif LDBL_MANT_DIG == 64 && LDBL_MAX_EXP == 16384
-long double nextafterl(long double x, long double y)
+TASELDOUBLE nextafterl(TASELDOUBLE x, TASELDOUBLE y)
 {
 	union ldshape ux, uy;
 
@@ -42,7 +42,7 @@ long double nextafterl(long double x, long double y)
 	return ux.f;
 }
 #elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384
-long double nextafterl(long double x, long double y)
+TASELDOUBLE nextafterl(TASELDOUBLE x, TASELDOUBLE y)
 {
 	union ldshape ux, uy;
 

@@ -2,7 +2,7 @@
 #include "__invtrigl.h"
 
 #if LDBL_MANT_DIG == 64 && LDBL_MAX_EXP == 16384
-static const long double
+static const TASELDOUBLE
 pS0 =  1.66666666666666666631e-01L,
 pS1 = -4.16313987993683104320e-01L,
 pS2 =  3.69068046323246813704e-01L,
@@ -16,20 +16,20 @@ qS3 = -1.68285799854822427013e+00L,
 qS4 =  3.90699412641738801874e-01L,
 qS5 = -3.14365703596053263322e-02L;
 
-const long double pio2_hi = 1.57079632679489661926L;
-const long double pio2_lo = -2.50827880633416601173e-20L;
+const TASELDOUBLE pio2_hi = 1.57079632679489661926L;
+const TASELDOUBLE pio2_lo = -2.50827880633416601173e-20L;
 
 /* used in asinl() and acosl() */
 /* R(x^2) is a rational approximation of (asin(x)-x)/x^3 with Remez algorithm */
-long double __invtrigl_R(long double z)
+TASELDOUBLE __invtrigl_R(TASELDOUBLE z)
 {
-	long double p, q;
+	TASELDOUBLE p, q;
 	p = z*(pS0+z*(pS1+z*(pS2+z*(pS3+z*(pS4+z*(pS5+z*pS6))))));
 	q = 1.0+z*(qS1+z*(qS2+z*(qS3+z*(qS4+z*qS5))));
 	return p/q;
 }
 #elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384
-static const long double
+static const TASELDOUBLE
 pS0 =  1.66666666666666666666666666666700314e-01L,
 pS1 = -7.32816946414566252574527475428622708e-01L,
 pS2 =  1.34215708714992334609030036562143589e+00L,
@@ -50,12 +50,12 @@ qS7 = -1.18768052702942805423330715206348004e-01L,
 qS8 =  8.32600764660522313269101537926539470e-03L,
 qS9 = -1.99407384882605586705979504567947007e-04L;
 
-const long double pio2_hi = 1.57079632679489661923132169163975140L;
-const long double pio2_lo = 4.33590506506189051239852201302167613e-35L;
+const TASELDOUBLE pio2_hi = 1.57079632679489661923132169163975140L;
+const TASELDOUBLE pio2_lo = 4.33590506506189051239852201302167613e-35L;
 
-long double __invtrigl_R(long double z)
+TASELDOUBLE __invtrigl_R(TASELDOUBLE z)
 {
-	long double p, q;
+	TASELDOUBLE p, q;
 	p = z*(pS0+z*(pS1+z*(pS2+z*(pS3+z*(pS4+z*(pS5+z*(pS6+z*(pS7+z*(pS8+z*pS9)))))))));
 	q = 1.0+z*(qS1+z*(qS2+z*(qS3+z*(qS4+z*(qS5+z*(qS6+z*(qS7+z*(qS8+z*qS9))))))));
 	return p/q;

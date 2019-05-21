@@ -1,18 +1,18 @@
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double tanhl(long double x)
+TASELDOUBLE tanhl(TASELDOUBLE x)
 {
 	return tanh(x);
 }
 #elif LDBL_MANT_DIG == 64 && LDBL_MAX_EXP == 16384
-long double tanhl(long double x)
+TASELDOUBLE tanhl(TASELDOUBLE x)
 {
 	union ldshape u = {x};
 	unsigned ex = u.i.se & 0x7fff;
 	unsigned sign = u.i.se & 0x8000;
 	uint32_t w;
-	long double t;
+	TASELDOUBLE t;
 
 	/* x = |x| */
 	u.i.se = ex;
@@ -41,7 +41,7 @@ long double tanhl(long double x)
 }
 #elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384
 // TODO: broken implementation to make things compile
-long double tanhl(long double x)
+TASELDOUBLE tanhl(TASELDOUBLE x)
 {
 	return tanh(x);
 }

@@ -1,6 +1,6 @@
 #include <math.h>
 
-long long llroundl(long double x)
+long long llroundl(TASELDOUBLE x)
 {
 	return roundl(x);
 }

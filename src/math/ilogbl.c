@@ -2,12 +2,12 @@
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-int ilogbl(long double x)
+int ilogbl(TASELDOUBLE x)
 {
 	return ilogb(x);
 }
 #elif LDBL_MANT_DIG == 64 && LDBL_MAX_EXP == 16384
-int ilogbl(long double x)
+int ilogbl(TASELDOUBLE x)
 {
 	#pragma STDC FENV_ACCESS ON
 	union ldshape u = {x};
@@ -30,7 +30,7 @@ int ilogbl(long double x)
 	return e - 0x3fff;
 }
 #elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384
-int ilogbl(long double x)
+int ilogbl(TASELDOUBLE x)
 {
 	#pragma STDC FENV_ACCESS ON
 	union ldshape u = {x};

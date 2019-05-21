@@ -3,10 +3,10 @@
 
 /*
 the return types are only correct with gcc (__GNUC__)
-otherwise they are long double or long double complex
+otherwise they are TASELDOUBLE or TASELDOUBLE complex
 
-the long double version of a function is never chosen when
-sizeof(double) == sizeof(long double)
+the TASELDOUBLE version of a function is never chosen when
+sizeof(double) == sizeof(TASELDOUBLE)
 (but the return type is set correctly with gcc)
 */
 
@@ -18,11 +18,11 @@ sizeof(double) == sizeof(long double)
 #define __IS_REAL(x) (__IS_FP(x) && 2*sizeof(x) == sizeof((x)+I))
 
 #define __FLT(x) (__IS_REAL(x) && sizeof(x) == sizeof(float))
-#define __LDBL(x) (__IS_REAL(x) && sizeof(x) == sizeof(long double) && sizeof(long double) != sizeof(double))
+#define __LDBL(x) (__IS_REAL(x) && sizeof(x) == sizeof(TASELDOUBLE) && sizeof(TASELDOUBLE) != sizeof(double))
 
 #define __FLTCX(x) (__IS_CX(x) && sizeof(x) == sizeof(float complex))
 #define __DBLCX(x) (__IS_CX(x) && sizeof(x) == sizeof(double complex))
-#define __LDBLCX(x) (__IS_CX(x) && sizeof(x) == sizeof(long double complex) && sizeof(long double) != sizeof(double))
+#define __LDBLCX(x) (__IS_CX(x) && sizeof(x) == sizeof(TASELDOUBLE complex) && sizeof(TASELDOUBLE) != sizeof(double))
 
 /* return type */
 
@@ -31,7 +31,7 @@ sizeof(double) == sizeof(long double)
 the result must be casted to the right type
 (otherwise the result type is determined by the conversion
 rules applied to all the function return types so it is long
-double or long double complex except for integral functions)
+double or TASELDOUBLE complex except for integral functions)
 
 this cannot be done in c99, so the typeof gcc extension is
 used and that the type of ?: depends on wether an operand is
@@ -60,11 +60,11 @@ so they can be in null pointer constants
 		__typeof__((x)+(y)+(z)), \
 		__typeof__((x)+(y)+(z)+1.0)))
 /* drop complex from the type of x */
-/* TODO: wrong when sizeof(long double)==sizeof(double) */
+/* TODO: wrong when sizeof(TASELDOUBLE)==sizeof(double) */
 #define __RETCAST_REAL(x) (  \
 	__type2(__IS_FP(x) && sizeof((x)+I) == sizeof(float complex), float, \
 	__type2(sizeof((x)+1.0+I) == sizeof(double complex), double, \
-		long double)))
+		TASELDOUBLE)))
 /* add complex to the type of x */
 #define __RETCAST_CX(x) (__typeof__(__RETCAST(x)0+I))
 #else

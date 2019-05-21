@@ -18,18 +18,18 @@
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double cbrtl(long double x)
+TASELDOUBLE cbrtl(TASELDOUBLE x)
 {
 	return cbrt(x);
 }
 #elif (LDBL_MANT_DIG == 64 || LDBL_MANT_DIG == 113) && LDBL_MAX_EXP == 16384
 static const unsigned B1 = 709958130; /* B1 = (127-127.0/3-0.03306235651)*2**23 */
 
-long double cbrtl(long double x)
+TASELDOUBLE cbrtl(TASELDOUBLE x)
 {
 	union ldshape u = {x}, v;
 	union {float f; uint32_t i;} uft;
-	long double r, s, t, w;
+	TASELDOUBLE r, s, t, w;
 	double_t dr, dt, dx;
 	float_t ft;
 	int e = u.i.se & 0x7fff;

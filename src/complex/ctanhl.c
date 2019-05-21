@@ -1,7 +1,7 @@
 #include "complex_impl.h"
 
 //FIXME
-long double complex ctanhl(long double complex z)
+TASELDOUBLE complex ctanhl(TASELDOUBLE complex z)
 {
 	return ctanh(z);
 }

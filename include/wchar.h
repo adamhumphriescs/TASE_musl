@@ -93,7 +93,7 @@ size_t wcsrtombs (char *__restrict, const wchar_t **__restrict, size_t, mbstate_
 
 float wcstof (const wchar_t *__restrict, wchar_t **__restrict);
 double wcstod (const wchar_t *__restrict, wchar_t **__restrict);
-long double wcstold (const wchar_t *__restrict, wchar_t **__restrict);
+TASELDOUBLE wcstold (const wchar_t *__restrict, wchar_t **__restrict);
 
 long wcstol (const wchar_t *__restrict, wchar_t **__restrict, int);
 unsigned long wcstoul (const wchar_t *__restrict, wchar_t **__restrict, int);

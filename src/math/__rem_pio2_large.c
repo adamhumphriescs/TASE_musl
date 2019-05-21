@@ -49,9 +49,9 @@
  *              The actual value is the sum of them. Thus for 113-bit
  *              precison, one may have to do something like:
  *
- *              long double t,w,r_head, r_tail;
- *              t = (long double)y[2] + (long double)y[1];
- *              w = (long double)y[0];
+ *              TASELDOUBLE t,w,r_head, r_tail;
+ *              t = (TASELDOUBLE)y[2] + (TASELDOUBLE)y[1];
+ *              w = (TASELDOUBLE)y[0];
  *              r_head = t+w;
  *              r_tail = w - (r_head - t);
  *

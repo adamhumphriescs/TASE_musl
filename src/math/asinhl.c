@@ -1,13 +1,13 @@
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double asinhl(long double x)
+TASELDOUBLE asinhl(TASELDOUBLE x)
 {
 	return asinh(x);
 }
 #elif LDBL_MANT_DIG == 64 && LDBL_MAX_EXP == 16384
 /* asinh(x) = sign(x)*log(|x|+sqrt(x*x+1)) ~= x - x^3/6 + o(x^5) */
-long double asinhl(long double x)
+TASELDOUBLE asinhl(TASELDOUBLE x)
 {
 	union ldshape u = {x};
 	unsigned e = u.i.se & 0x7fff;
@@ -34,7 +34,7 @@ long double asinhl(long double x)
 }
 #elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384
 // TODO: broken implementation to make things compile
-long double asinhl(long double x)
+TASELDOUBLE asinhl(TASELDOUBLE x)
 {
 	return asinh(x);
 }

@@ -15,12 +15,12 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 /*
- *      Exponential function, long double precision
+ *      Exponential function, TASELDOUBLE precision
  *
  *
  * SYNOPSIS:
  *
- * long double x, y, expl();
+ * TASELDOUBLE x, y, expl();
  *
  * y = expl( x );
  *
@@ -52,7 +52,7 @@
  * which shows that a 1 lsb error in representing X produces
  * a relative error of X times 1 lsb in the function.
  * While the routine gives an accurate result for arguments
- * that are exactly represented by a long double precision
+ * that are exactly represented by a TASELDOUBLE precision
  * computer number, the result contains amplified roundoff
  * error for large arguments not exactly represented.
  *
@@ -68,31 +68,31 @@
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double expl(long double x)
+TASELDOUBLE expl(TASELDOUBLE x)
 {
 	return exp(x);
 }
 #elif LDBL_MANT_DIG == 64 && LDBL_MAX_EXP == 16384
 
-static const long double P[3] = {
+static const TASELDOUBLE P[3] = {
  1.2617719307481059087798E-4L,
  3.0299440770744196129956E-2L,
  9.9999999999999999991025E-1L,
 };
-static const long double Q[4] = {
+static const TASELDOUBLE Q[4] = {
  3.0019850513866445504159E-6L,
  2.5244834034968410419224E-3L,
  2.2726554820815502876593E-1L,
  2.0000000000000000000897E0L,
 };
-static const long double
+static const TASELDOUBLE
 LN2HI = 6.9314575195312500000000E-1L,
 LN2LO = 1.4286068203094172321215E-6L,
 LOG2E = 1.4426950408889634073599E0L;
 
-long double expl(long double x)
+TASELDOUBLE expl(TASELDOUBLE x)
 {
-	long double px, xx;
+	TASELDOUBLE px, xx;
 	int k;
 
 	if (isnan(x))
@@ -121,7 +121,7 @@ long double expl(long double x)
 }
 #elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384
 // TODO: broken implementation to make things compile
-long double expl(long double x)
+TASELDOUBLE expl(TASELDOUBLE x)
 {
 	return exp(x);
 }

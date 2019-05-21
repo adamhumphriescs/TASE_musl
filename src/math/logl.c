@@ -15,12 +15,12 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 /*
- *      Natural logarithm, long double precision
+ *      Natural logarithm, TASELDOUBLE precision
  *
  *
  * SYNOPSIS:
  *
- * long double x, y, logl();
+ * TASELDOUBLE x, y, logl();
  *
  * y = logl( x );
  *
@@ -55,7 +55,7 @@
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double logl(long double x)
+TASELDOUBLE logl(TASELDOUBLE x)
 {
 	return log(x);
 }
@@ -64,7 +64,7 @@ long double logl(long double x)
  * 1/sqrt(2) <= x < sqrt(2)
  * Theoretical peak relative error = 2.32e-20
  */
-static const long double P[] = {
+static const TASELDOUBLE P[] = {
  4.5270000862445199635215E-5L,
  4.9854102823193375972212E-1L,
  6.5787325942061044846969E0L,
@@ -73,7 +73,7 @@ static const long double P[] = {
  5.7112963590585538103336E1L,
  2.0039553499201281259648E1L,
 };
-static const long double Q[] = {
+static const TASELDOUBLE Q[] = {
 /* 1.0000000000000000000000E0,*/
  1.5062909083469192043167E1L,
  8.3047565967967209469434E1L,
@@ -88,26 +88,26 @@ static const long double Q[] = {
  * 1/sqrt(2) <= x < sqrt(2)
  * Theoretical peak relative error = 6.16e-22
  */
-static const long double R[4] = {
+static const TASELDOUBLE R[4] = {
  1.9757429581415468984296E-3L,
 -7.1990767473014147232598E-1L,
  1.0777257190312272158094E1L,
 -3.5717684488096787370998E1L,
 };
-static const long double S[4] = {
+static const TASELDOUBLE S[4] = {
 /* 1.00000000000000000000E0L,*/
 -2.6201045551331104417768E1L,
  1.9361891836232102174846E2L,
 -4.2861221385716144629696E2L,
 };
-static const long double C1 = 6.9314575195312500000000E-1L;
-static const long double C2 = 1.4286068203094172321215E-6L;
+static const TASELDOUBLE C1 = 6.9314575195312500000000E-1L;
+static const TASELDOUBLE C2 = 1.4286068203094172321215E-6L;
 
 #define SQRTH 0.70710678118654752440L
 
-long double logl(long double x)
+TASELDOUBLE logl(TASELDOUBLE x)
 {
-	long double y, z;
+	TASELDOUBLE y, z;
 	int e;
 
 	if (isnan(x))
@@ -168,7 +168,7 @@ long double logl(long double x)
 }
 #elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384
 // TODO: broken implementation to make things compile
-long double logl(long double x)
+TASELDOUBLE logl(TASELDOUBLE x)
 {
 	return log(x);
 }

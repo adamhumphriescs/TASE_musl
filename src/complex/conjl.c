@@ -1,6 +1,6 @@
 #include "complex_impl.h"
 
-long double complex conjl(long double complex z)
+TASELDOUBLE complex conjl(TASELDOUBLE complex z)
 {
 	return CMPLXL(creall(z), -cimagl(z));
 }

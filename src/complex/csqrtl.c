@@ -1,7 +1,7 @@
 #include "complex_impl.h"
 
 //FIXME
-long double complex csqrtl(long double complex z)
+TASELDOUBLE complex csqrtl(TASELDOUBLE complex z)
 {
 	return csqrt(z);
 }

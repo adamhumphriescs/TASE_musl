@@ -35,4 +35,5 @@
 #define _Noreturn
 #endif
 
+#include <taseldouble.h>
 #endif

@@ -25,7 +25,7 @@
  *
  * See __cosl.c for more details about the polynomial.
  */
-static const long double
+static const TASELDOUBLE
 S1 = -0.166666666666666666671L;   /* -0xaaaaaaaaaaaaaaab.0p-66 */
 static const double
 S2 =  0.0083333333333333332,      /*  0x11111111111111.0p-59 */
@@ -46,7 +46,7 @@ S8 =  2.6174587166648325e-15;     /*  0x179372ea0b3f64.0p-101 */
  *
  * See __cosl.c for more details about the polynomial.
  */
-static const long double
+static const TASELDOUBLE
 S1 = -0.16666666666666666666666666666666666606732416116558L,
 S2 =  0.0083333333333333333333333333333331135404851288270047L,
 S3 = -0.00019841269841269841269841269839935785325638310428717L,
@@ -64,9 +64,9 @@ S12 =  0.64038150078671872796678569586315881020659912139412e-25;
 	z*(S9+z*(S10+z*(S11+z*S12))))))))))
 #endif
 
-long double __sinl(long double x, long double y, int iy)
+TASELDOUBLE __sinl(TASELDOUBLE x, TASELDOUBLE y, int iy)
 {
-	long double z,r,v;
+	TASELDOUBLE z,r,v;
 
 	z = x*x;
 	v = z*x;

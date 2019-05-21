@@ -4,7 +4,7 @@
 
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long lrintl(long double x)
+long lrintl(TASELDOUBLE x)
 {
 	return lrint(x);
 }
@@ -16,7 +16,7 @@ Note that if LONG_MAX == 0x7fffffffffffffff && LDBL_MANT_DIG == 64
 then x == 2**63 - 0.5 is the only input that overflows and
 raises inexact (with tonearest or upward rounding mode)
 */
-long lrintl(long double x)
+long lrintl(TASELDOUBLE x)
 {
 	#pragma STDC FENV_ACCESS ON
 	int e;
@@ -29,7 +29,7 @@ long lrintl(long double x)
 	return x;
 }
 #else
-long lrintl(long double x)
+long lrintl(TASELDOUBLE x)
 {
 	return rintl(x);
 }

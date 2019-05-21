@@ -1,12 +1,12 @@
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-double nexttoward(double x, long double y)
+double nexttoward(double x, TASELDOUBLE y)
 {
 	return nextafter(x, y);
 }
 #else
-double nexttoward(double x, long double y)
+double nexttoward(double x, TASELDOUBLE y)
 {
 	union {double f; uint64_t i;} ux = {x};
 	int e;

@@ -61,7 +61,8 @@ float fmaf(float x, float y, float z)
 		if (e < 0x3ff-126 && e >= 0x3ff-149 && fetestexcept(FE_INEXACT)) {
 			feclearexcept(FE_INEXACT);
 			/* TODO: gcc and clang bug workaround */
-			volatile float vz = z;
+			//volatile float vz = z;
+			float vz = z;
 			result = xy + vz;
 			if (fetestexcept(FE_INEXACT))
 				feraiseexcept(FE_UNDERFLOW);
@@ -80,7 +81,8 @@ float fmaf(float x, float y, float z)
 #ifdef FE_TOWARDZERO
 	fesetround(FE_TOWARDZERO);
 #endif
-	volatile double vxy = xy;  /* XXX work around gcc CSE bug */
+	//volatile double vxy = xy;  /* XXX work around gcc CSE bug */
+	double vxy = xy;
 	double adjusted_result = vxy + z;
 	fesetround(FE_TONEAREST);
 	if (result == adjusted_result) {

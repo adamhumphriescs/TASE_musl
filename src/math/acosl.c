@@ -11,13 +11,13 @@
  */
 /*
  * See comments in acos.c.
- * Converted to long double by David Schultz <das@FreeBSD.ORG>.
+ * Converted to TASELDOUBLE by David Schultz <das@FreeBSD.ORG>.
  */
 
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double acosl(long double x)
+TASELDOUBLE acosl(TASELDOUBLE x)
 {
 	return acos(x);
 }
@@ -29,10 +29,10 @@ long double acosl(long double x)
 #define CLEARBOTTOM(u) (u.i.lo = 0)
 #endif
 
-long double acosl(long double x)
+TASELDOUBLE acosl(TASELDOUBLE x)
 {
 	union ldshape u = {x};
-	long double z, s, c, f;
+	TASELDOUBLE z, s, c, f;
 	uint16_t e = u.i.se & 0x7fff;
 
 	/* |x| >= 1 or nan */

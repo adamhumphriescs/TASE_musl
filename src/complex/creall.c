@@ -1,6 +1,6 @@
 #include <complex.h>
 
-long double (creall)(long double complex z)
+TASELDOUBLE (creall)(TASELDOUBLE complex z)
 {
 	return creall(z);
 }

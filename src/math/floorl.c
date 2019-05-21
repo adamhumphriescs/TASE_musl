@@ -1,19 +1,19 @@
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double floorl(long double x)
+TASELDOUBLE floorl(TASELDOUBLE x)
 {
 	return floor(x);
 }
 #elif (LDBL_MANT_DIG == 64 || LDBL_MANT_DIG == 113) && LDBL_MAX_EXP == 16384
 
-static const long double toint = 1/LDBL_EPSILON;
+static const TASELDOUBLE toint = 1/LDBL_EPSILON;
 
-long double floorl(long double x)
+TASELDOUBLE floorl(TASELDOUBLE x)
 {
 	union ldshape u = {x};
 	int e = u.i.se & 0x7fff;
-	long double y;
+	TASELDOUBLE y;
 
 	if (e >= 0x3fff+LDBL_MANT_DIG-1 || x == 0)
 		return x;

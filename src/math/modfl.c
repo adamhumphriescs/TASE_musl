@@ -1,10 +1,10 @@
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double modfl(long double x, long double *iptr)
+TASELDOUBLE modfl(TASELDOUBLE x, TASELDOUBLE *iptr)
 {
 	double d;
-	long double r;
+	TASELDOUBLE r;
 
 	r = modf(x, &d);
 	*iptr = d;
@@ -12,15 +12,15 @@ long double modfl(long double x, long double *iptr)
 }
 #elif (LDBL_MANT_DIG == 64 || LDBL_MANT_DIG == 113) && LDBL_MAX_EXP == 16384
 
-static const long double toint = 1/LDBL_EPSILON;
+static const TASELDOUBLE toint = 1/LDBL_EPSILON;
 
-long double modfl(long double x, long double *iptr)
+TASELDOUBLE modfl(TASELDOUBLE x, TASELDOUBLE *iptr)
 {
 	union ldshape u = {x};
 	int e = (u.i.se & 0x7fff) - 0x3fff;
 	int s = u.i.se >> 15;
-	long double absx;
-	long double y;
+	TASELDOUBLE absx;
+	TASELDOUBLE y;
 
 	/* no fractional part */
 	if (e >= LDBL_MANT_DIG-1) {

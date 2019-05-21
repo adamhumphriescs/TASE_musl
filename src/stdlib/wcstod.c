@@ -27,7 +27,7 @@ static size_t do_read(FILE *f, unsigned char *buf, size_t len)
 	return 0;
 }
 
-static long double wcstox(const wchar_t *s, wchar_t **p, int prec)
+static TASELDOUBLE wcstox(const wchar_t *s, wchar_t **p, int prec)
 {
 	wchar_t *t = (wchar_t *)s;
 	unsigned char buf[64];
@@ -41,7 +41,7 @@ static long double wcstox(const wchar_t *s, wchar_t **p, int prec)
 	while (iswspace(*t)) t++;
 	f.cookie = (void *)t;
 	shlim(&f, 0);
-	long double y = __floatscan(&f, prec, 1);
+	TASELDOUBLE y = __floatscan(&f, prec, 1);
 	if (p) {
 		size_t cnt = shcnt(&f);
 		*p = cnt ? t + cnt : (wchar_t *)s;
@@ -59,7 +59,7 @@ double wcstod(const wchar_t *restrict s, wchar_t **restrict p)
 	return wcstox(s, p, 1);
 }
 
-long double wcstold(const wchar_t *restrict s, wchar_t **restrict p)
+TASELDOUBLE wcstold(const wchar_t *restrict s, wchar_t **restrict p)
 {
 	return wcstox(s, p, 2);
 }

@@ -1,6 +1,6 @@
 #include <math.h>
 
-long double ldexpl(long double x, int n)
+TASELDOUBLE ldexpl(TASELDOUBLE x, int n)
 {
 	return scalbnl(x, n);
 }

@@ -15,12 +15,12 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 /*
- *      Common logarithm, long double precision
+ *      Common logarithm, TASELDOUBLE precision
  *
  *
  * SYNOPSIS:
  *
- * long double x, y, log10l();
+ * TASELDOUBLE x, y, log10l();
  *
  * y = log10l( x );
  *
@@ -60,7 +60,7 @@
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double log10l(long double x)
+TASELDOUBLE log10l(TASELDOUBLE x)
 {
 	return log10(x);
 }
@@ -69,7 +69,7 @@ long double log10l(long double x)
  * 1/sqrt(2) <= x < sqrt(2)
  * Theoretical peak relative error = 6.2e-22
  */
-static const long double P[] = {
+static const TASELDOUBLE P[] = {
  4.9962495940332550844739E-1L,
  1.0767376367209449010438E1L,
  7.7671073698359539859595E1L,
@@ -78,7 +78,7 @@ static const long double P[] = {
  3.4258224542413922935104E2L,
  1.0747524399916215149070E2L,
 };
-static const long double Q[] = {
+static const TASELDOUBLE Q[] = {
 /* 1.0000000000000000000000E0,*/
  2.3479774160285863271658E1L,
  1.9444210022760132894510E2L,
@@ -94,13 +94,13 @@ static const long double Q[] = {
  * 1/sqrt(2) <= x < sqrt(2)
  * Theoretical peak relative error = 6.16e-22
  */
-static const long double R[4] = {
+static const TASELDOUBLE R[4] = {
  1.9757429581415468984296E-3L,
 -7.1990767473014147232598E-1L,
  1.0777257190312272158094E1L,
 -3.5717684488096787370998E1L,
 };
-static const long double S[4] = {
+static const TASELDOUBLE S[4] = {
 /* 1.00000000000000000000E0L,*/
 -2.6201045551331104417768E1L,
  1.9361891836232102174846E2L,
@@ -115,9 +115,9 @@ static const long double S[4] = {
 
 #define SQRTH 0.70710678118654752440L
 
-long double log10l(long double x)
+TASELDOUBLE log10l(TASELDOUBLE x)
 {
-	long double y, z;
+	TASELDOUBLE y, z;
 	int e;
 
 	if (isnan(x))
@@ -184,7 +184,7 @@ done:
 }
 #elif LDBL_MANT_DIG == 113 && LDBL_MAX_EXP == 16384
 // TODO: broken implementation to make things compile
-long double log10l(long double x)
+TASELDOUBLE log10l(TASELDOUBLE x)
 {
 	return log10(x);
 }

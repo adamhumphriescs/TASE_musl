@@ -1,6 +1,8 @@
 #ifndef _COMPLEX_H
 #define _COMPLEX_H
 
+#include <taseldouble.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -15,91 +17,91 @@ extern "C" {
 
 double complex cacos(double complex);
 float complex cacosf(float complex);
-long double complex cacosl(long double complex);
+TASELDOUBLE complex cacosl(TASELDOUBLE complex);
 
 double complex casin(double complex);
 float complex casinf(float complex);
-long double complex casinl(long double complex);
+TASELDOUBLE complex casinl(TASELDOUBLE complex);
 
 double complex catan(double complex);
 float complex catanf(float complex);
-long double complex catanl(long double complex);
+TASELDOUBLE complex catanl(TASELDOUBLE complex);
 
 double complex ccos(double complex);
 float complex ccosf(float complex);
-long double complex ccosl(long double complex);
+TASELDOUBLE complex ccosl(TASELDOUBLE complex);
 
 double complex csin(double complex);
 float complex csinf(float complex);
-long double complex csinl(long double complex);
+TASELDOUBLE complex csinl(TASELDOUBLE complex);
 
 double complex ctan(double complex);
 float complex ctanf(float complex);
-long double complex ctanl(long double complex);
+TASELDOUBLE complex ctanl(TASELDOUBLE complex);
 
 double complex cacosh(double complex);
 float complex cacoshf(float complex);
-long double complex cacoshl(long double complex);
+TASELDOUBLE complex cacoshl(TASELDOUBLE complex);
 
 double complex casinh(double complex);
 float complex casinhf(float complex);
-long double complex casinhl(long double complex);
+TASELDOUBLE complex casinhl(TASELDOUBLE complex);
 
 double complex catanh(double complex);
 float complex catanhf(float complex);
-long double complex catanhl(long double complex);
+TASELDOUBLE complex catanhl(TASELDOUBLE complex);
 
 double complex ccosh(double complex);
 float complex ccoshf(float complex);
-long double complex ccoshl(long double complex);
+TASELDOUBLE complex ccoshl(TASELDOUBLE complex);
 
 double complex csinh(double complex);
 float complex csinhf(float complex);
-long double complex csinhl(long double complex);
+TASELDOUBLE complex csinhl(TASELDOUBLE complex);
 
 double complex ctanh(double complex);
 float complex ctanhf(float complex);
-long double complex ctanhl(long double complex);
+TASELDOUBLE complex ctanhl(TASELDOUBLE complex);
 
 double complex cexp(double complex);
 float complex cexpf(float complex);
-long double complex cexpl(long double complex);
+TASELDOUBLE complex cexpl(TASELDOUBLE complex);
 
 double complex clog(double complex);
 float complex clogf(float complex);
-long double complex clogl(long double complex);
+TASELDOUBLE complex clogl(TASELDOUBLE complex);
 
 double cabs(double complex);
 float cabsf(float complex);
-long double cabsl(long double complex);
+TASELDOUBLE cabsl(TASELDOUBLE complex);
 
 double complex cpow(double complex, double complex);
 float complex cpowf(float complex, float complex);
-long double complex cpowl(long double complex, long double complex);
+TASELDOUBLE complex cpowl(TASELDOUBLE complex, TASELDOUBLE complex);
 
 double complex csqrt(double complex);
 float complex csqrtf(float complex);
-long double complex csqrtl(long double complex);
+TASELDOUBLE complex csqrtl(TASELDOUBLE complex);
 
 double carg(double complex);
 float cargf(float complex);
-long double cargl(long double complex);
+TASELDOUBLE cargl(TASELDOUBLE complex);
 
 double cimag(double complex);
 float cimagf(float complex);
-long double cimagl(long double complex);
+TASELDOUBLE cimagl(TASELDOUBLE complex);
 
 double complex conj(double complex);
 float complex conjf(float complex);
-long double complex conjl(long double complex);
+TASELDOUBLE complex conjl(TASELDOUBLE complex);
 
 double complex cproj(double complex);
 float complex cprojf(float complex);
-long double complex cprojl(long double complex);
+TASELDOUBLE complex cprojl(TASELDOUBLE complex);
 
 double creal(double complex);
 float crealf(float complex);
-long double creall(long double complex);
+TASELDOUBLE creall(TASELDOUBLE complex);
 
 #ifndef __cplusplus
 #define __CIMAG(x, t) \
@@ -107,11 +109,11 @@ long double creall(long double complex);
 
 #define creal(x) ((double)(x))
 #define crealf(x) ((float)(x))
-#define creall(x) ((long double)(x))
+#define creall(x) ((TASELDOUBLE)(x))
 
 #define cimag(x) __CIMAG(x, double)
 #define cimagf(x) __CIMAG(x, float)
-#define cimagl(x) __CIMAG(x, long double)
+#define cimagl(x) __CIMAG(x, TASELDOUBLE)
 #endif
 
 #if __STDC_VERSION__ >= 201112L
@@ -124,7 +126,7 @@ long double creall(long double complex);
 #endif
 #define CMPLX(x, y) __CMPLX(x, y, double)
 #define CMPLXF(x, y) __CMPLX(x, y, float)
-#define CMPLXL(x, y) __CMPLX(x, y, long double)
+#define CMPLXL(x, y) __CMPLX(x, y, TASELDOUBLE)
 #endif
 
 #ifdef __cplusplus

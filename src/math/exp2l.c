@@ -28,7 +28,7 @@
 #include "libm.h"
 
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
-long double exp2l(long double x)
+TASELDOUBLE exp2l(TASELDOUBLE x)
 {
 	return exp2(x);
 }
@@ -197,11 +197,11 @@ static const double tbl[TBLSIZE * 2] = {
  *   The table entries each have 104 bits of accuracy, encoded as
  *   a pair of double precision values.
  */
-long double exp2l(long double x)
+TASELDOUBLE exp2l(TASELDOUBLE x)
 {
 	union ldshape u = {x};
 	int e = u.i.se & 0x7fff;
-	long double r, z;
+	TASELDOUBLE r, z;
 	uint32_t i0;
 	union {uint32_t u; int32_t i;} k;
 
@@ -243,8 +243,8 @@ long double exp2l(long double x)
 	z = x - u.f;
 
 	/* Compute r = exp2l(y) = exp2lt[i0] * p(z). */
-	long double t_hi = tbl[2*i0];
-	long double t_lo = tbl[2*i0 + 1];
+	TASELDOUBLE t_hi = tbl[2*i0];
+	TASELDOUBLE t_lo = tbl[2*i0 + 1];
 	/* XXX This gives > 1 ulp errors outside of FE_TONEAREST mode */
 	r = t_lo + (t_hi + t_lo) * z * (P1 + z * (P2 + z * (P3 + z * (P4
 	     + z * (P5 + z * P6))))) + t_hi;
@@ -255,7 +255,7 @@ long double exp2l(long double x)
 #define TBLBITS 7
 #define TBLSIZE (1 << TBLBITS)
 
-static const long double
+static const TASELDOUBLE
     P1        = 0x1.62e42fefa39ef35793c7673007e6p-1L,
     P2        = 0x1.ebfbdff82c58ea86f16b06ec9736p-3L,
     P3        = 0x1.c6b08d704a0bf8b33a762bad3459p-5L,
@@ -270,7 +270,7 @@ static const double
     P10       = 0x1.e4cf56a391e22p-28,
     redux     = 0x1.8p112 / TBLSIZE;
 
-static const long double tbl[TBLSIZE] = {
+static const TASELDOUBLE tbl[TBLSIZE] = {
 	0x1.6a09e667f3bcc908b2fb1366dfeap-1L,
 	0x1.6c012750bdabeed76a99800f4edep-1L,
 	0x1.6dfb23c651a2ef220e2cbe1bc0d4p-1L,
@@ -562,12 +562,12 @@ static const float eps[TBLSIZE] = {
  *	Gal, S. and Bachelis, B.  An Accurate Elementary Mathematical Library
  *	for the IEEE Floating Point Standard.  TOMS 17(1), 26-46 (1991).
  */
-long double
-exp2l(long double x)
+TASELDOUBLE
+exp2l(TASELDOUBLE x)
 {
 	union ldshape u = {x};
 	int e = u.i.se & 0x7fff;
-	long double r, z, t;
+	TASELDOUBLE r, z, t;
 	uint32_t i0;
 	union {uint32_t u; int32_t i;} k;
 

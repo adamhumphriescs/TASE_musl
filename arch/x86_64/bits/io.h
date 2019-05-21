@@ -1,4 +1,4 @@
-static __inline void outb(unsigned char __val, unsigned short __port)
+/*static __inline void outb(unsigned char __val, unsigned short __port)
 {
 	__asm__ volatile ("outb %0,%1" : : "a" (__val), "dN" (__port));
 }
@@ -74,4 +74,4 @@ static __inline void insl(unsigned short __port, void *__buf, unsigned long __n)
 	__asm__ volatile ("cld; rep; insl"
 		      : "+D" (__buf), "+c" (__n)
 		      : "d" (__port));
-}
+}*/

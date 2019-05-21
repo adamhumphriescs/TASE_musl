@@ -20,7 +20,7 @@
  * use __rem_pio2_large() for large x
  */
 
-static const long double toint = 1.5/LDBL_EPSILON;
+static const TASELDOUBLE toint = 1.5/LDBL_EPSILON;
 
 #if LDBL_MANT_DIG == 64
 /* u ~< 0x1p25*pi/2 */
@@ -43,7 +43,7 @@ static const double
 pio2_1 =  1.57079632679597125389e+00, /* 0x3FF921FB, 0x54444000 */
 pio2_2 = -1.07463465549783099519e-12, /* -0x12e7b967674000.0p-92 */
 pio2_3 =  6.36831716351370313614e-25; /*  0x18a2e037074000.0p-133 */
-static const long double
+static const TASELDOUBLE
 invpio2 =  6.36619772367581343076e-01L, /*  0xa2f9836e4e44152a.0p-64 */
 pio2_1t = -1.07463465549719416346e-12L, /* -0x973dcb3b399d747f.0p-103 */
 pio2_2t =  6.36831716351095013979e-25L, /*  0xc51701b839a25205.0p-144 */
@@ -56,7 +56,7 @@ pio2_3t = -2.75299651904407171810e-37L; /* -0xbb5bf6c7ddd660ce.0p-185 */
 #define ROUND2 119
 #define NX 5
 #define NY 3
-static const long double
+static const TASELDOUBLE
 invpio2 =  6.3661977236758134307553505349005747e-01L,	/*  0x145f306dc9c882a53f84eafa3ea6a.0p-113 */
 pio2_1  =  1.5707963267948966192292994253909555e+00L,	/*  0x1921fb54442d18469800000000000.0p-112 */
 pio2_1t =  2.0222662487959507323996846200947577e-21L,	/*  0x13198a2e03707344a4093822299f3.0p-181 */
@@ -66,10 +66,10 @@ pio2_3  =  2.0670321098263988236499468110329591e-43L,	/*  0x127044533e63a0105e00
 pio2_3t = -2.5650587247459238361625433492959285e-65L;	/* -0x159c4ec64ddaeb5f78671cbfb2210.0p-327 */
 #endif
 
-int __rem_pio2l(long double x, long double *y)
+int __rem_pio2l(TASELDOUBLE x, TASELDOUBLE *y)
 {
 	union ldshape u,uz;
-	long double z,w,t,r,fn;
+	TASELDOUBLE z,w,t,r,fn;
 	double tx[NX],ty[NY];
 	int ex,ey,n,i;
 

@@ -43,7 +43,7 @@
  * almost for free from the complications needed to search for the best
  * higher coefficients.
  */
-static const long double
+static const TASELDOUBLE
 C1 =  0.0416666666666666666136L;        /*  0xaaaaaaaaaaaaaa9b.0p-68 */
 static const double
 C2 = -0.0013888888888888874,            /* -0x16c16c16c16c10.0p-62 */
@@ -66,7 +66,7 @@ C7 =  4.7383039476436467e-14;           /*  0x1aac9d9af5c43e.0p-97 */
  * that is 1 ulp below 0.5, but we want it to be precisely 0.5.  See
  * above for more details.
  */
-static const long double
+static const TASELDOUBLE
 C1 =  0.04166666666666666666666666666666658424671L,
 C2 = -0.001388888888888888888888888888863490893732L,
 C3 =  0.00002480158730158730158730158600795304914210L,
@@ -83,9 +83,9 @@ C11 =  0.1601061435794535138244346256065192782581e-23;
 	z*(C8+z*(C9+z*(C10+z*C11)))))))))))
 #endif
 
-long double __cosl(long double x, long double y)
+TASELDOUBLE __cosl(TASELDOUBLE x, TASELDOUBLE y)
 {
-	long double hz,z,r,w;
+	TASELDOUBLE hz,z,r,w;
 
 	z  = x*x;
 	r  = POLY(z);

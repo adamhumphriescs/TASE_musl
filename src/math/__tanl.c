@@ -24,7 +24,7 @@
  *
  * See __cosl.c for more details about the polynomial.
  */
-static const long double
+static const TASELDOUBLE
 T3 =  0.333333333333333333180L,         /*  0xaaaaaaaaaaaaaaa5.0p-65 */
 T5 =  0.133333333333333372290L,         /*  0x88888888888893c3.0p-66 */
 T7 =  0.0539682539682504975744L,        /*  0xdd0dd0dd0dc13ba2.0p-68 */
@@ -58,7 +58,7 @@ T33 =  0.0000023261313142559411;        /*  0x13835436c0c87f.0p-71 */
  *
  * See __cosl.c for more details about the polynomial.
  */
-static const long double
+static const TASELDOUBLE
 T3 = 0x1.5555555555555555555555555553p-2L,
 T5 = 0x1.1111111111111111111111111eb5p-3L,
 T7 = 0x1.ba1ba1ba1ba1ba1ba1ba1b694cd6p-5L,
@@ -98,8 +98,8 @@ T57 =  1.4912469681508012e-10;		/*  0x147edbdba6f43a.0p-85 */
 	w * (T47 + w * (T51 + w * T55))))))))))))
 #endif
 
-long double __tanl(long double x, long double y, int odd) {
-	long double z, r, v, w, s, a, t;
+TASELDOUBLE __tanl(TASELDOUBLE x, TASELDOUBLE y, int odd) {
+	TASELDOUBLE z, r, v, w, s, a, t;
 	int big, sign;
 
 	big = fabsl(x) >= 0.67434;
