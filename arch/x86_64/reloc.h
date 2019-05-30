@@ -18,3 +18,4 @@
 	".hidden " #sym "\n" \
 	"	lea " #sym "(%%rip),%0\n" \
 	: "=r"(*fp) : : "memory" )
+
