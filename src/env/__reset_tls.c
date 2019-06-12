@@ -1,3 +1,5 @@
+/* TASE: No TLS support. */
+#if 0
 #include <string.h>
 #include "pthread_impl.h"
 #include "libc.h"
@@ -13,3 +15,4 @@ void __reset_tls()
 		memset(mem+p->len, 0, p->size - p->len);
 	}
 }
+#endif

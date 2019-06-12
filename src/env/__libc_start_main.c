@@ -1,3 +1,6 @@
+/* TASE: Disable libc start functions - reimplement in TASE if needed. */
+#if 0
+
 #include <elf.h>
 #include <poll.h>
 #include <fcntl.h>
@@ -94,3 +97,5 @@ static int libc_start_main_stage2(int (*main)(int,char **,char **), int argc, ch
 	exit(main(argc, argv, envp));
 	return 0;
 }
+
+#endif

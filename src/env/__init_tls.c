@@ -1,3 +1,5 @@
+/* TASE: No thread local storage support. */
+#if 0
 #define SYSCALL_NO_TLS 1
 #include <elf.h>
 #include <limits.h>
@@ -150,3 +152,5 @@ static void static_init_tls(size_t *aux)
 }
 
 weak_alias(static_init_tls, __init_tls);
+
+#endif
