@@ -170,11 +170,11 @@ $(EMPTY_LIBS):
 	rm -f $@
 	$(AR) rc $@
 
-lib/%.o: obj/crt/$(ARCH)/%.o
-	cp $< $@
+#lib/%.o: obj/crt/$(ARCH)/%.o
+#	cp $< $@
 
-lib/%.o: obj/crt/%.o
-	cp $< $@
+#lib/%.o: obj/crt/%.o
+#	cp $< $@
 
 lib/musl-gcc.specs: $(srcdir)/tools/musl-gcc.specs.sh config.mak
 	sh $< "$(includedir)" "$(libdir)" "$(LDSO_PATHNAME)" > $@

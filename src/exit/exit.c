@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include "libc.h"
 
+#if 0
 static void dummy()
 {
 }
@@ -23,11 +24,16 @@ static void libc_exit_fini(void)
 }
 
 weak_alias(libc_exit_fini, __libc_exit_fini);
+#endif
 
+/* TASE - don't actually exit or call any handlers. */
 _Noreturn void exit(int code)
 {
+  char x = *(volatile char *)0;
+  /*
 	__funcs_on_exit();
 	__libc_exit_fini();
 	__stdio_exit();
 	_Exit(code);
+	*/
 }
