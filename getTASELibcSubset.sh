@@ -1,0 +1,11 @@
+#Grab a subset of LibC functions for TASE to execute.
+#When we've got better support for floats, we'll just grab the whole library.
+
+set -e
+
+touch src/string/*.c
+touch src/stdlib/*.c
+touch src/network/*.c
+touch src/ctype/*.c
+
+make install -j 8
