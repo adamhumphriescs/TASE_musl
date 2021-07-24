@@ -14,7 +14,7 @@ libdir = $(prefix)/lib
 includedir = $(prefix)/include
 syslibdir = /lib
 CC = $(TASE_BASE_DIR)/install_root/bin/clang
-CFLAGS = -mllvm -x86-tase-modeled-functions=$(TASE_BASE_DIR)/test/tase/include/tase/core_modeled.h -I$(TASE_BASE_DIR)/test/tase/include/tase -T$(TASE_BASE_DIR)/test/tase/tase_link.ld -mno-sse -mno-sse2 -mno-sse3 -mno-sse4.2 -mno-80387 -mllvm -verify-regalloc -mllvm -verify-machineinstrs -O1
+CFLAGS = -mllvm -x86-tase-modeled-functions=$(TASE_BASE_DIR)/test/tase/include/tase/core_modeled.h -I$(TASE_BASE_DIR)/test/tase/include/tase -T$(TASE_BASE_DIR)/test/tase/tase_link.ld -mno-sse -mno-sse2 -mno-sse3 -mno-sse4.2 -mno-80387 -mllvm -verify-regalloc -mllvm -verify-machineinstrs -O1 -D__FLT_EVAL_METHOD__=0
 CFLAGS_AUTO = -pipe -fomit-frame-pointer -fno-unwind-tables -fno-asynchronous-unwind-tables -ffunction-sections -fdata-sections -Werror=implicit-function-declaration -Werror=implicit-int -Werror=pointer-sign -Werror=pointer-arith -Qunused-arguments
 CFLAGS_C99FSE = -std=c99 -nostdinc -ffreestanding -Wa,--noexecstack
 CFLAGS_MEMOPS =

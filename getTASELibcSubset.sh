@@ -7,5 +7,7 @@ touch src/string/*.c
 touch src/stdlib/*.c
 touch src/network/*.c
 touch src/ctype/*.c
+touch src/math/*.c
+touch src/fenv/*.c
 
 make install -j 8
